@@ -29,8 +29,9 @@ locals {
 
 module "staticfiles" {
   #source                   = "git::https://github.com/cloudposse/terraform-aws-cloudfront-s3-cdn.git?ref=tags/0.92.0"
-  source                   = "cloudposse/cloudfront-s3-cdn/aws"
-  version                  = "0.92.0"
+  #source                   = "cloudposse/cloudfront-s3-cdn/aws"
+  source                   = "../s3staticfiles"
+  #version                  = "0.92.0"
   origin_force_destroy     = true
   namespace                = var.lambda_function_name
   stage                    = var.stage
@@ -40,6 +41,7 @@ module "staticfiles" {
   cors_allowed_origins     = ["*"]
   cors_expose_headers      = ["ETag","Content-Range","Content-Length"]
   allow_ssl_requests_only  = false
+  block_origin_public_access_enabled = false
 }
 
 module "s3_user_staticfiles" {
