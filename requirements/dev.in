@@ -3,7 +3,7 @@
 
 black
 django-storages[s3]
-django-s3-storage
+django-s3-storage==0.13.2
 isort
 pip==23.1
 pip-tools==5.2.1
