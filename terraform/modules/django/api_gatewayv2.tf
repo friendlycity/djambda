@@ -29,6 +29,7 @@ resource "aws_apigatewayv2_stage" "lambda" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? length(keys(local.dist_manifest)) : 0
   api_id = aws_apigatewayv2_api.lambda[0].id
   name   = keys(local.dist_manifest)[count.index]
+
   auto_deploy = true
   stage_variables = {
     lambdaFunctionName = "${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
