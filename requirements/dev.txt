@@ -175,9 +175,11 @@ django==3.2.23 \
     #   -c requirements/test.txt
     #   -r requirements/base.in
     #   dj-database-url
+    #   django-filter
     #   django-lgi
     #   django-s3-storage
     #   django-storages
+    #   djangorestframework
 django-cache-url==3.4.4 \
     --hash=sha256:5ca4760b4580b80e41279bc60d1e5c16a822e4e462265faab0a330701bb0ef9a \
     --hash=sha256:ef2cfacea361ee22e9b67d6ca941db22e0a9eaf892b67ca71cad52c62a17fd36
@@ -185,6 +187,13 @@ django-cache-url==3.4.4 \
     #   -c requirements/base.txt
     #   -c requirements/test.txt
     #   environs
+django-filter==23.3 \
+    --hash=sha256:015fe155582e1805b40629344e4a6cf3cc40450827d294d040b4b8c1749a9fa6 \
+    --hash=sha256:65bc5d1d8f4fff3aaf74cb5da537b6620e9214fb4b3180f6c560776b1b6dccd0
+    # via
+    #   -c requirements/base.txt
+    #   -c requirements/test.txt
+    #   -r requirements/base.in
 django-lgi==0.1.2 \
     --hash=sha256:5b265c194a756107fd8fa49e79837ee0d86305f39eebfa3e30928ec15aae346a \
     --hash=sha256:8274a117e0d24832208d8544d3edd1ed3d9346fc9443aaea96e31d2bb529b4bd
@@ -199,6 +208,13 @@ django-storages[s3]==1.14.2 \
     --hash=sha256:1db759346b52ada6c2efd9f23d8241ecf518813eb31db9e2589207174f58f6ad \
     --hash=sha256:51b36af28cc5813b98d5f3dfe7459af638d84428c8df4a03990c7d74d1bea4e5
     # via -r requirements/dev.in
+djangorestframework==3.14.0 \
+    --hash=sha256:579a333e6256b09489cbe0a067e66abe55c6595d8926be6b99423786334350c8 \
+    --hash=sha256:eb63f58c9f218e1a7d064d17a70751f528ed4e1d35547fdade9aaf4cd103fd08
+    # via
+    #   -c requirements/base.txt
+    #   -c requirements/test.txt
+    #   -r requirements/base.in
 docutils==0.15.2 \
     --hash=sha256:6c4f696463b79f1fb8ba0c594b63840ebd41f059e92b31957c46b74a4599b6d0 \
     --hash=sha256:9e4d7ecfc600058e07ba661411a2b7de2fd0fafa17d1a7f7361cd47b1175c827 \
@@ -384,6 +400,7 @@ pytz==2023.3.post1 \
     #   -c requirements/base.txt
     #   -c requirements/test.txt
     #   django
+    #   djangorestframework
 pyyaml==6.0.1 \
     --hash=sha256:04ac92ad1925b2cff1db0cfebffb6ffc43457495c9b3c39d3fcae417d7125dc5 \
     --hash=sha256:062582fca9fabdd2c8b54a3ef1c978d786e0f6b3a1510e0ac93ef59e0ddae2bc \

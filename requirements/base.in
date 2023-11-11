@@ -7,3 +7,5 @@ django-lgi
 argon2-cffi
 environs[django]
 psycopg2-binary
+djangorestframework
+django-filter
