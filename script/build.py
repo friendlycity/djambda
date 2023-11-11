@@ -46,13 +46,14 @@ def build(args):
         )
     # create staticfiles manifest
     if args.collect_manifest:
-        static_dir = tempfile.mkdtemp()
-        subprocess.check_call(
-            [sys.executable, os.path.join(temp_dir, "manage.py"), "collectstatic",],
-            env={"ENABLE_MANIFEST_STORAGE": "True", "STATIC_ROOT": static_dir},
-        )
-        shutil.copy2(os.path.join(static_dir, "staticfiles.json"), temp_dir)
-        shutil.rmtree(static_dir)
+        pass
+        #static_dir = tempfile.mkdtemp()
+        #subprocess.check_call(
+        #    [sys.executable, os.path.join(temp_dir, "manage.py"), "collectstatic",],
+        #    env={"ENABLE_MANIFEST_STORAGE": "True", "STATIC_ROOT": static_dir},
+        #)
+        #shutil.copy2(os.path.join(static_dir, "staticfiles.json"), temp_dir)
+        #shutil.rmtree(static_dir)
     # create pyc files
     compileall.compile_dir(
         temp_dir,

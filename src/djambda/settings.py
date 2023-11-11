@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "djambda",
+    #"djambda",
+    'core',
+    'core.user',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -60,7 +63,6 @@ TEMPLATES = [
             "context_processors": [
                 "django.template.context_processors.debug",
                 "django.template.context_processors.request",
-                #'django.template.context_processors.static',
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
@@ -82,7 +84,8 @@ if ENABLE_DATABASES:
 ## User model
 ## https://docs.djangoproject.com/en/3.1/ref/settings/#auth-user-model
 
-AUTH_USER_MODEL = "djambda.User"
+#AUTH_USER_MODEL = "djambda.User"
+AUTH_USER_MODEL = "core_user.User"
 
 
 # Password validation
