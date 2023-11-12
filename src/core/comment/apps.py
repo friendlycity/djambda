@@ -3,5 +3,5 @@ from django.apps import AppConfig
 
 class CommentConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'post.comment'
-    label = 'post_comment'
+    name = 'core.comment'
+    label = 'core_comment'
