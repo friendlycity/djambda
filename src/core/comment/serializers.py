@@ -11,7 +11,7 @@ class CommentSerializer(AbstractSerializer):
     author = serializers.SlugRelatedField(queryset=User.objects.all(), slug_field="public_id")
     post = serializers.SlugRelatedField(queryset=Post.objects.all(), slug_field="public_id")
     
-    '''liked = serializers.SerializerMethodField()
+    liked = serializers.SerializerMethodField()
     likes_count = serializers.SerializerMethodField()
 
     def get_liked(self, instance):
@@ -42,7 +42,7 @@ class CommentSerializer(AbstractSerializer):
 
         instance = super().update(instance, validated_data)
 
-        return instance'''
+        return instance
 
     def to_representation(self, instance):
         rep = super().to_representation(instance)
