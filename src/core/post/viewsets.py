@@ -4,10 +4,11 @@ from rest_framework.permissions import IsAuthenticated
 from core.abstract.viewsets import AbstractViewSet
 from core.post.models import Post
 from core.post.serializers import PostSerializer
+from core.auth.permissions import UserPermission
 
 class PostViewSet(AbstractViewSet):
-    http_method_names = ('post', 'get')
-    permission_classes = (IsAuthenticated,)
+    http_method_names = ('post', 'get', 'put', 'delete')
+    permission_classes = (IsAuthenticated, UserPermission)
     serializer_class = PostSerializer
     
     def get_queryset(self):
