@@ -8,7 +8,7 @@ from core.auth.permissions import UserPermission
 
 class PostViewSet(AbstractViewSet):
     http_method_names = ('post', 'get', 'put', 'delete')
-    permission_classes = (UserPermission)
+    permission_classes = (UserPermission,)
     serializer_class = PostSerializer
     filterset_fields = ["author__public_id"]
     
