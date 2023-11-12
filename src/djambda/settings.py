@@ -90,12 +90,12 @@ ENABLE_DATABASES = env.str("DATABASE_URL", default="")
 if ENABLE_DATABASES:
     DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+'''DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}'''
 
 ## User model
 ## https://docs.djangoproject.com/en/3.1/ref/settings/#auth-user-model
