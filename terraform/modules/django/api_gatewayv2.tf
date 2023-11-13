@@ -2,6 +2,11 @@ resource "aws_apigatewayv2_api" "lambda" {
   count = var.create_lambda_function && var.enable_api_gatewayv2 ? 1 : 0
   name          = "${var.lambda_function_name}_${var.stage}_gatewayv2"
   protocol_type = "HTTP"
+  cors_configuration {
+    allow_origins = ["*"]
+    allow_methods = ["*"]
+    allow_headers = ["*"]
+  }
 }
 
 resource "aws_apigatewayv2_integration" "lambda" {
