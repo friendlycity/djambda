@@ -88,15 +88,17 @@ WSGI_APPLICATION = "djambda.wsgi.application"
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 ENABLE_DATABASES = env.str("DATABASE_URL", default="")
-if ENABLE_DATABASES:
+ENABLE_TEST = env.bool("ENABLE_TEST", default=False)
+if ENABLE_DATABASES and not ENABLE_TEST:
     DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 
-'''DATABASES = {
+elif ENABLE_TEST:
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
-}'''
+}
 
 ## User model
 ## https://docs.djangoproject.com/en/3.1/ref/settings/#auth-user-model

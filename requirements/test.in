@@ -1,3 +1,5 @@
 -c base.txt
 -c base.txt
 -r base.in
+
+pytest-django

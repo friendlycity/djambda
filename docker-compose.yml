@@ -12,6 +12,7 @@ services:
     image: "djambda-dev"
     environment:
      - DATABASE_URL
+     - ENABLE_TEST
      - STATIC_URL
      - STATIC_ROOT
      - AWS_ACCESS_KEY_ID
