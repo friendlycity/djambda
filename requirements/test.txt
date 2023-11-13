@@ -130,6 +130,7 @@ django==3.2.23 \
     #   -c requirements/base.txt
     #   -r requirements/base.in
     #   dj-database-url
+    #   django-cors-headers
     #   django-filter
     #   django-lgi
     #   djangorestframework
@@ -141,6 +142,12 @@ django-cache-url==3.4.4 \
     # via
     #   -c requirements/base.txt
     #   environs
+django-cors-headers==4.3.0 \
+    --hash=sha256:25aabc94d4837678c1edf442c7f68a5f5fd151f6767b0e0b01c61a2179d02711 \
+    --hash=sha256:bd36c7aea0d070e462f3383f0dc9ef717e5fdc2b10a99c98c285f16da84ffba2
+    # via
+    #   -c requirements/base.txt
+    #   -r requirements/base.in
 django-filter==23.3 \
     --hash=sha256:015fe155582e1805b40629344e4a6cf3cc40450827d294d040b4b8c1749a9fa6 \
     --hash=sha256:65bc5d1d8f4fff3aaf74cb5da537b6620e9214fb4b3180f6c560776b1b6dccd0

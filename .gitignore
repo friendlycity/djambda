@@ -162,3 +162,5 @@ dmypy.json
 .envrc
 
 /dist
+
+/node_modules
