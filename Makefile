@@ -70,7 +70,7 @@ up:
 	COMPOSE_DOCKER_CLI_BUILD=1 DOCKER_BUILDKIT=1 docker-compose up
 
 test: $(PRE_DEV_TARGET)
-	$(if $(PRE_DEV_TARGET),$(DOCKER_RUN_DEV)) cd src && ENABLE_TEST=True python3 -m pytest -vv -p no:warnings
+	$(if $(PRE_DEV_TARGET),$(DOCKER_RUN_DEV)) ./script/tests.sh
 
 lint: $(PRE_DEV_TARGET)
 	$(if $(PRE_DEV_TARGET),$(DOCKER_RUN_DEV)) pre-commit run --all-files
