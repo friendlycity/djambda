@@ -428,6 +428,7 @@ pytest==7.4.3 \
     --hash=sha256:d989d136982de4e3b29dabcc838ad581c64e8ed52c11fbe86ddebd9da0818cd5
     # via
     #   -c requirements/test.txt
+    #   -r requirements/test.in
     #   pytest-django
 pytest-django==4.7.0 \
     --hash=sha256:4e1c79d5261ade2dd58d91208017cd8f62cb4710b56e012ecd361d15d5d662a2 \
