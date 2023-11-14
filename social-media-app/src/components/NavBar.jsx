@@ -34,8 +34,8 @@ const NavigationBar = () => {
                                 <Image src={randomAvatar()} roundedCircle width={36} height={36} />
                             }
                         >
-                        <NavDropdown.Item href="#">
-                            Profile
+                        <NavDropdown.Item as={Link} to=
+                            {`/profile/${user.id}/`}>Profile
                         </NavDropdown.Item>
                         <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
                         </NavDropdown>

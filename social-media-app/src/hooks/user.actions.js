@@ -5,7 +5,7 @@ import axiosService from "../helpers/axios";
 const useUserActions = () => {
     const navigate = useNavigate();
     const baseURL = "https://2cce83y6mb.execute-api.us-east-1.amazonaws.com/0/api";
-    return { login, register, logout };
+    return { login, register, logout, edit };
 
     //Login the user
     function login(data) {
@@ -26,13 +26,9 @@ const useUserActions = () => {
     }
 
     // Edit the user
-    /**function edit(data, userId) {
+    function edit(data, userId) {
         return axiosService
-        .patch(`${baseURL}/user/${userId}/`, data, {
-            headers: {
-                "content-type": "multipart/form-data",
-            },
-        })
+        .patch(`${baseURL}/user/${userId}/`, data)
         .then((res) => {
             // Registering the account in the store
             localStorage.setItem(
@@ -44,7 +40,7 @@ const useUserActions = () => {
                 })
             )
         }
-    )}*/
+    )}
 
     // Logout the user
     function logout() {
