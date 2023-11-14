@@ -43,7 +43,7 @@ class TestAuthenticationViewSet:
         assert response.data["access"]
 
     def test_logout(self, client, user):
-        data = {"username": user.username, "password": "test_password"}
+        data = {"email": user.email, "password": "test_password"}
 
         response = client.post(self.endpoint + "login/", data)
 
