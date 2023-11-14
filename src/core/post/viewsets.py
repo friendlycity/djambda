@@ -21,11 +21,8 @@ class PostViewSet(AbstractViewSet):
         self.check_object_permissions(self.request, obj)
         return obj
     
-    '''def list(self, request, *args, **kwargs):
-        post_objects = cache.get("post_objects")
-        if post_objects is None:
-            post_objects = self.filter_queryset(self.get_queryset())
-            cache.set("post_objects", post_objects)
+    def list(self, request, *args, **kwargs):
+        post_objects = self.filter_queryset(self.get_queryset())
 
         page = self.paginate_queryset(post_objects)
         if page is not None:
@@ -33,7 +30,7 @@ class PostViewSet(AbstractViewSet):
             return self.get_paginated_response(serializer.data)
 
         serializer = self.get_serializer(post_objects, many=True)
-        return Response(serializer.data)'''
+        return Response(serializer.data)
 
     
     def create(self, request, *args, **kwargs):
