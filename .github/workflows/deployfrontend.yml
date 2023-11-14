@@ -1,0 +1,37 @@
+name: deploy frontend
+
+on: 
+  push:
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Create static build
+        working-directory: ./social-media-app
+        run: yarn install && yarn build
+      - name: Share artifact in github workflow
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: ./social-media-app/build/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Get build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: build
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_S3_ACCESS_KEY_ID_REACTSITE }}
+          aws-secret-access-key: ${{ secrets.AWS_S3_SECRET_ACCESS_KEY_REACTSITE }}
+          aws-region: ${{ secrets.AWS_REGION_REACTSITE }}
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync . s3://${{ secrets.AWS_S3_BUCKET_NAME_REACTSITE }} --delete
+        working-directory: build
