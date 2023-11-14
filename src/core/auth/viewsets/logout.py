@@ -15,7 +15,7 @@ class LogoutViewSet(viewsets.ViewSet):
 
         try:
             token = RefreshToken(request.data.get("refresh"))
-            #token.blacklist()
+            token.blacklist()
             return Response(status=status.HTTP_204_NO_CONTENT)
         except TokenError:
             raise ValidationError({"detail": "The refresh token is invalid."})
