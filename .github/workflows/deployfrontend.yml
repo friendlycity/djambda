@@ -9,9 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - run: echo ${{ secrets.REACT_APP_BASEURL }}
       - name: Create static build
         working-directory: ./social-media-app
-        run: yarn install && yarn build
+        run: yarn install && REACT_APP_BASEURL=${{ secrets.REACT_APP_BASEURL }} yarn build
       - name: Share artifact in github workflow
         uses: actions/upload-artifact@v3
         with:

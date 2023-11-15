@@ -4,7 +4,7 @@ import axiosService from "../helpers/axios";
 
 const useUserActions = () => {
     const navigate = useNavigate();
-    const baseURL = "https://2cce83y6mb.execute-api.us-east-1.amazonaws.com/0/api";
+    const baseURL = process.env.REACT_APP_BASEURL
     return { login, register, logout, edit };
 
     //Login the user

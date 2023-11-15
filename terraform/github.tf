@@ -56,3 +56,10 @@ resource "github_actions_secret" "aws_s3_bucket_name_reactsite" {
   secret_name     = "AWS_S3_BUCKET_NAME_REACTSITE"
   plaintext_value = module.django.reactsite_bucket
 }
+
+resource "github_actions_secret" "react_app_baseurl" {
+  count           = var.github_repository != "" ? 1 : 0
+  repository      = var.github_repository
+  secret_name     = "REACT_APP_BASEURL"
+  plaintext_value = module.django.backend_url
+}

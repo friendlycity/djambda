@@ -3,8 +3,8 @@ import createAuthRefreshInterceptor from "axios-auth-refresh";
 import { getAccessToken, getRefreshToken, getUser } from "../hooks/user.actions";
 
 const axiosService = axios.create({
-    //baseURL: process.env.REACT_APP_API_URL,
-    baseURL: 'https://2cce83y6mb.execute-api.us-east-1.amazonaws.com/0/api/',
+    baseURL: process.env.REACT_APP_BASEURL,
+    //baseURL: 'https://2cce83y6mb.execute-api.us-east-1.amazonaws.com/0/api/',
     headers: {"Content-Type": "application/json",},
 });
 
@@ -29,8 +29,8 @@ const refreshAuthLogic = async (failedRequest) => {
             refresh: getRefreshToken()
         },
         {
-            //baseURL: process.env.REACT_APP_API_URL,
-            baseURL: 'https://2cce83y6mb.execute-api.us-east-1.amazonaws.com/0/api/',
+            baseURL: process.env.REACT_APP_BASEURL
+            //baseURL: 'https://2cce83y6mb.execute-api.us-east-1.amazonaws.com/0/api/',
         }
     )
     .then((resp) => {
