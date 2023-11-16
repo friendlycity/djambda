@@ -82,4 +82,4 @@ jobs:
         AWS_S3_BUCKET_NAME_DEPLOY: ${{ secrets.AWS_S3_BUCKET_NAME_DEPLOY }}
         DEPLOYMENT_STAGE_NAME: 0
       if: ${{ env.AWS_ACCESS_KEY_ID && env.AWS_SECRET_ACCESS_KEY && env.AWS_S3_BUCKET_NAME_DEPLOY && env.DEPLOYMENT_STAGE_NAME }}
-      run: python /script/deploy.py "$(env.AWS_S3_BUCKET_NAME_DEPLOY)" "$(env.DEPLOYMENT_STAGE_NAME)" --dist dist/app.pyz
+      run: python ./script/deploy.py "$(env.AWS_S3_BUCKET_NAME_DEPLOY)" "$(env.DEPLOYMENT_STAGE_NAME)" --dist dist/app.pyz
