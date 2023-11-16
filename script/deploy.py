@@ -93,6 +93,7 @@ def main(args=None):
     parser.add_argument("--destroy", action="store_true")
 
     args = parser.parse_args(args)
+    print(args.s3_bucket)
 
     manifest = get_manifest(args.s3_bucket)
     if args.destroy:
