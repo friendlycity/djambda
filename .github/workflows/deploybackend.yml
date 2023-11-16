@@ -1,4 +1,4 @@
-name: deploy
+name: deploy backend
 
 on:
   push:
@@ -45,7 +45,7 @@ jobs:
       run: mkdir -p dist
 
     - name: Build app
-      run: python ./script/build.py src/ --requirements requirements/base.txt -o dist/app.pyz --main manage:main --include *.mo *.html *.txt.gz *.json pytz/* *.pyc *.so* *.pyd* -exclude boto3/* botocore/* -q --compress
+      run: python ./script/build.py src/ -r requirements/base.txt -o dist/app.pyz -m manage:main -i *.mo *.html *.txt.gz *.json pytz/* *.pyc *.so* *.pyd* -e boto3/* botocore/* -c
 
     - name: Upload app artifact
       uses: actions/upload-artifact@v1
