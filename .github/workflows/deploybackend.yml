@@ -3,6 +3,10 @@ name: deploy backend
 on:
   push:
     branches: [master]
+    paths: 
+      - requirements
+      - script
+      - src
   workflow_dispatch:
 
 jobs:

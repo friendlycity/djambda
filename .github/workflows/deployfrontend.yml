@@ -3,6 +3,8 @@ name: deploy frontend
 on: 
   push:
     branches: [master]
+    paths:
+      - social-media-app
   workflow_dispatch:
 
 jobs:
