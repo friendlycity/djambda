@@ -8,4 +8,5 @@ module "django" {
   default_from_email     = var.default_from_email
   enable_api_gatewayv2   = true
   db_password            = var.db_password
+  db_url                 = var.db_url
 }
