@@ -12,14 +12,12 @@ class RegisterViewSet(ViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        try:
-            print(serializer)
-            serializer.is_valid(raise_exception=True)
-            user = serializer.save()
-            print(user)
-            refresh = RefreshToken.for_user(user)
-        except Exception as error:
-            print(error)
+        serializer.is_valid(raise_exception=True)
+        print('serializer:', serializer)
+        user = serializer.save()
+        print('user:', user)
+        refresh = RefreshToken.for_user(user)
+        print('res:', res)
         res = {
             "refresh": str(refresh),
             "access": str(refresh.access_token),
