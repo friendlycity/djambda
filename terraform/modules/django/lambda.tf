@@ -90,6 +90,11 @@ locals {
   }
 }
 
+resource "random_password" "password" {
+  length  = 16
+  special = false
+}
+
 resource "aws_lambda_function" "function" {
   count = var.create_lambda_function ? length(keys(local.dist_manifest)) : 0
 
@@ -108,7 +113,8 @@ resource "aws_lambda_function" "function" {
 
   vpc_config {
     subnet_ids = module.vpc.database_subnets
-    security_group_ids = [data.aws_security_group.default.id, module.postgresql_security_group.security_group_id]
+    #security_group_ids = [data.aws_security_group.default.id, module.postgresql_security_group.security_group_id]
+    security_group_ids = [data.aws_security_group.default.id]
   }
 
   environment {
@@ -116,7 +122,8 @@ resource "aws_lambda_function" "function" {
       {
         ALLOWED_HOSTS = "*"
         DEBUG = "False"
-        DATABASE_URL = "postgres://${module.db.db_instance_username}:${module.db.db_instance_password}@${module.db.db_instance_address}:${module.db.db_instance_port}/${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+        #DATABASE_URL = "postgres://${module.db.db_instance_username}:${module.db.db_instance_password}@${module.db.db_instance_address}:${module.db.db_instance_port}/${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+        DATABASE_URL = var.db_url
         FORCE_SCRIPT_NAME = "/${keys(local.dist_manifest)[count.index]}/"
         DJANGO_SUPERUSER_PASSWORD=random_password.password.result
         ENABLE_MANIFEST_STORAGE = "False"

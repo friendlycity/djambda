@@ -38,7 +38,7 @@ output "dist_bucket" {
   value       = module.s3_bucket_app.bucket_id
 }
 
-output "backend_url" {
-  description = "Url of backend."
-  value = "${aws_apigatewayv2_stage.lambda[0].invoke_url}/api"
-}
+#output "backend_url" {
+#  description = "Url of backend."
+#  value = "${aws_apigatewayv2_stage.lambda[0].invoke_url}/api"
+#}

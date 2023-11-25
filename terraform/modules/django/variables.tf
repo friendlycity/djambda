@@ -14,5 +14,6 @@ variable "enable_ses_endpoint" {default = false}
 variable "enable_api_gateway" {default = false}
 variable "enable_api_gatewayv2" {default = false}
 variable "db_password" {}
+variable "db_url" {}
 variable "react_app_site" {default = "react_app_site"}
 variable "react_app_site_stage" {default = "dev"}
