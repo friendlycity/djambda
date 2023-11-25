@@ -12,7 +12,7 @@ class RegisterViewSet(ViewSet):
 
     def create(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        serializer.is_valid(raise_exception=False)
         print('serializer:', serializer)
         user = serializer.save()
         print('user:', user)
