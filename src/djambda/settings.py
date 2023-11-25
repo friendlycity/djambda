@@ -93,6 +93,7 @@ WSGI_APPLICATION = "djambda.wsgi.application"
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 ENABLE_DATABASES = env.str("DATABASE_URL", default="")
+print(env.str("DATABASE_URL"))
 ENABLE_TEST = env.bool("ENABLE_TEST", default=False)
 if ENABLE_DATABASES and not ENABLE_TEST:
     DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
@@ -104,6 +105,8 @@ elif ENABLE_TEST:
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# To use Neon with Django, you have to create a Project on Neon and specify the project connection settings in your settings.py in the same way as for standalone Postgres.
 
 ## User model
 ## https://docs.djangoproject.com/en/3.1/ref/settings/#auth-user-model
