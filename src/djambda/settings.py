@@ -95,7 +95,16 @@ WSGI_APPLICATION = "djambda.wsgi.application"
 ENABLE_DATABASES = env.str("DATABASE_URL", default="")
 ENABLE_TEST = env.bool("ENABLE_TEST", default=False)
 if ENABLE_DATABASES and not ENABLE_TEST:
-    DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
+    #DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
+    DATABASES = {"default": {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'ensemble',
+        'USER': 'trgordonb',
+        'PASSWORD': 'tYO64ifBrdNs',
+        'HOST': 'ep-summer-moon-17615621.us-east-2.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {'sslmode': 'require'},
+    }}
 
 elif ENABLE_TEST:
     DATABASES = {
