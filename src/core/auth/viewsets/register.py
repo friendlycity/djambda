@@ -14,7 +14,7 @@ class RegisterViewSet(ViewSet):
         serializer = self.serializer_class(data=request.data)
         print('serializer:', serializer)
         try:
-            serializer.is_valid(raise_exception=True)
+            #serializer.is_valid(raise_exception=True)
             user = serializer.save()
             refresh = RefreshToken.for_user(user)
             res = {
