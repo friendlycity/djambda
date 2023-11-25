@@ -92,27 +92,18 @@ WSGI_APPLICATION = "djambda.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-#ENABLE_DATABASES = env.str("DATABASE_URL", default="")
-#ENABLE_TEST = env.bool("ENABLE_TEST", default=False)
-#if ENABLE_DATABASES and not ENABLE_TEST:
-    #DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
-DATABASES = {"default": {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'ensemble',
-    'USER': 'trgordonb',
-    'PASSWORD': 'tYO64ifBrdNs',
-    'HOST': 'ep-summer-moon-17615621.us-east-2.aws.neon.tech',
-    'PORT': '5432',
-    'OPTIONS': {'sslmode': 'require'},
-}}
+ENABLE_DATABASES = env.str("DATABASE_URL", default="")
+ENABLE_TEST = env.bool("ENABLE_TEST", default=False)
+if ENABLE_DATABASES and not ENABLE_TEST:
+    DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 
-#elif ENABLE_TEST:
-#    DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+elif ENABLE_TEST:
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
 # To use Neon with Django, you have to create a Project on Neon and specify the project connection settings in your settings.py in the same way as for standalone Postgres.
 
