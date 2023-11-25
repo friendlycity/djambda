@@ -17,11 +17,12 @@ class RegisterViewSet(ViewSet):
         user = serializer.save()
         print('user:', user)
         refresh = RefreshToken.for_user(user)
-        print('res:', res)
         res = {
             "refresh": str(refresh),
             "access": str(refresh.access_token),
         }
+        print('res:', res)
+
         return Response({
             "user": serializer.data,
             "refresh": res["refresh"],
