@@ -36,7 +36,6 @@ resource "aws_rds_cluster" "cluster" {
   allocated_storage       = local.allocated_storage
   
   vpc_security_group_ids  = [module.mysql_security_group.security_group_id]
-  db_subnet_group_name    = module.vpc.database_subnet_group_name
   
   backup_retention_period = 7
   skip_final_snapshot     = true
