@@ -34,8 +34,9 @@ resource "aws_rds_cluster" "cluster" {
   master_password         = var.db_password
   port                    = local.port
   allocated_storage       = local.allocated_storage
+  db_subnet_group_name    = module.vpc.database_subnet_group_name
   
-  vpc_security_group_ids  = [module.mysql_security_group.security_group_id]
+  #vpc_security_group_ids  = [module.mysql_security_group.security_group_id]
   
   backup_retention_period = 7
   skip_final_snapshot     = true
@@ -49,6 +50,8 @@ resource "aws_rds_cluster_instance" "cluster_instance" {
   engine_version     = aws_rds_cluster.cluster.engine_version
   
   publicly_accessible = false
+  db_subnet_group_name    = module.vpc.database_subnet_group_name
+
 }
 
 resource "aws_rds_cluster_endpoint" "static" {
