@@ -7,7 +7,7 @@ django-lgi
 argon2-cffi
 environs[django]
 #psycopg2-binary
-mysqlclient
+mysqlclient==2.0.3
 djangorestframework
 django-filter
 djangorestframework-simplejwt
