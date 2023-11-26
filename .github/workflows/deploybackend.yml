@@ -30,6 +30,9 @@ jobs:
     - name: make dist folder
       run: mkdir -p dist
 
+    - name: install mysqlclient perequisite
+      run: sudo apt install default-libmysqlclient-dev
+
     - name: Build app
       run: python ./script/build.py src/ -r requirements/base.txt -o dist/app.pyz -m manage:main -i *.mo *.html *.txt.gz *.json pytz/* *.pyc *.so* *.pyd* -e boto3/* botocore/* -c
 
