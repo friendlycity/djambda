@@ -33,7 +33,6 @@ resource "aws_rds_cluster" "cluster" {
   master_username         = "root"
   master_password         = var.db_password
   port                    = local.port
-  allocated_storage       = local.allocated_storage
   db_subnet_group_name    = module.vpc.database_subnet_group_name
   
   #vpc_security_group_ids  = [module.mysql_security_group.security_group_id]
