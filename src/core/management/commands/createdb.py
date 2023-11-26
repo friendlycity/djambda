@@ -1,7 +1,6 @@
-import psycopg2
+from MySQLdb import _mysql, DatabaseError
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
-from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 
 class Command(BaseCommand):
@@ -12,17 +11,16 @@ class Command(BaseCommand):
         parser.add_argument("--exist_ok", action="store_true")
 
     def handle(self, *args, **options):
-        connection = psycopg2.connect(
+        connection = _mysql.connect(
             user=settings.DATABASES["default"]["USER"],
             password=settings.DATABASES["default"]["PASSWORD"],
             host=settings.DATABASES["default"]["HOST"],
             port=settings.DATABASES["default"]["PORT"]
         )
-        connection.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
         try:
             with connection.cursor() as cursor:
                 cursor.execute(f"CREATE DATABASE \"{options['db_name']}\"")
-        except psycopg2.errors.DuplicateDatabase:
+        except DatabaseError:
             if not options["exist_ok"]:
                 raise CommandError('Database "%s" already exists' % options["db_name"])
         else:
