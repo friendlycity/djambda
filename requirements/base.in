@@ -6,7 +6,8 @@ django==3.2.23
 django-lgi
 argon2-cffi
 environs[django]
-psycopg2-binary
+#psycopg2-binary
+mysqlclient
 djangorestframework
 django-filter
 djangorestframework-simplejwt
