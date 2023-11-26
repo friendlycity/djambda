@@ -14,7 +14,7 @@ module "mysql_security_group" {
 locals {
   port              = "3306"
   engine            = "aurora-mysql"
-  engine_version    = "5.7.mysql_aurora.2.03.2"
+  engine_version    = "5.7"
   instance_class    = "db.t3.small"
   storage_encrypted = false
   allocated_storage = 5
