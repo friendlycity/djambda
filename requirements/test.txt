@@ -215,15 +215,6 @@ marshmallow==3.20.1 \
     # via
     #   -c requirements/base.txt
     #   environs
-mysqlclient==2.0.3 \
-    --hash=sha256:0ac0dd759c4ca02c35a9fedc24bc982cf75171651e8187c2495ec957a87dfff7 \
-    --hash=sha256:3381ca1a4f37ff1155fcfde20836b46416d66531add8843f6aa6d968982731c3 \
-    --hash=sha256:71c4b330cf2313bbda0307fc858cc9055e64493ba9bf28454d25cf8b3ee8d7f5 \
-    --hash=sha256:f6ebea7c008f155baeefe16c56cd3ee6239f7a5a9ae42396c2f1860f08a7c432 \
-    --hash=sha256:fc575093cf81b6605bed84653e48b277318b880dc9becf42dd47fa11ffd3e2b6
-    # via
-    #   -c requirements/base.txt
-    #   -r requirements/base.in
 packaging==23.2 \
     --hash=sha256:048fb0e9405036518eaaf48a55953c750c11e1a1b68e0dd1a9d62ed0c092cfc5 \
     --hash=sha256:8c491190033a9af7e1d931d0b5dacc2ef47509b34dd0de67ed209b5203fc88c7

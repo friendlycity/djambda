@@ -304,16 +304,6 @@ mypy-extensions==1.0.0 \
     --hash=sha256:4392f6c0eb8a5668a69e23d168ffa70f0be9ccfd32b5cc2d26a34ae5b844552d \
     --hash=sha256:75dbf8955dc00442a438fc4d0666508a9a97b6bd41aa2f0ffe9d2f2725af0782
     # via black
-mysqlclient==2.0.3 \
-    --hash=sha256:0ac0dd759c4ca02c35a9fedc24bc982cf75171651e8187c2495ec957a87dfff7 \
-    --hash=sha256:3381ca1a4f37ff1155fcfde20836b46416d66531add8843f6aa6d968982731c3 \
-    --hash=sha256:71c4b330cf2313bbda0307fc858cc9055e64493ba9bf28454d25cf8b3ee8d7f5 \
-    --hash=sha256:f6ebea7c008f155baeefe16c56cd3ee6239f7a5a9ae42396c2f1860f08a7c432 \
-    --hash=sha256:fc575093cf81b6605bed84653e48b277318b880dc9becf42dd47fa11ffd3e2b6
-    # via
-    #   -c requirements/base.txt
-    #   -c requirements/test.txt
-    #   -r requirements/base.in
 nodeenv==1.8.0 \
     --hash=sha256:d51e0c37e64fbf47d017feac3145cdbb58836d7eee8c6f6d3b6880c5456227d2 \
     --hash=sha256:df865724bb3c3adc86b3876fa209771517b0cfe596beff01a92700e0e8be4cec
