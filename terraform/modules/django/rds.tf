@@ -16,7 +16,7 @@ module "rds-aurora" {
   source  = "terraform-aws-modules/rds-aurora/aws"
   version = "8.5.0"
 
-  name            = "lambda-mysql"
+  name            = module.vpc_label.id
   engine          = local.engine
   engine_version  = local.engine_version
   master_username = "root"
