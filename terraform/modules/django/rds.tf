@@ -35,7 +35,7 @@ resource "aws_rds_cluster" "cluster" {
   port                    = local.port
   db_subnet_group_name    = module.vpc.database_subnet_group_name
   
-  #vpc_security_group_ids  = [module.mysql_security_group.security_group_id]
+  vpc_security_group_ids  = [module.mysql_security_group.security_group_id]
   
   backup_retention_period = 7
   skip_final_snapshot     = true
