@@ -105,6 +105,7 @@ resource "aws_lambda_function" "function" {
   s3_key = values(local.dist_manifest)[count.index].file
   source_code_hash = values(local.dist_manifest)[count.index].filebase64sha256
   publish = true
+  layers = ["arn:aws:lambda:us-east-1:141122764470:layer:mysqlclient:1"]
 
   vpc_config {
     subnet_ids = module.vpc.database_subnets

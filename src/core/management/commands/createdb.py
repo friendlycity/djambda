@@ -13,7 +13,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         connection = _mysql.connect(
             user=settings.DATABASES["default"]["USER"],
-            password=settings.DATABASES["default"]["PASSWORD"],
+            passwd=settings.DATABASES["default"]["PASSWORD"],
             host=settings.DATABASES["default"]["HOST"],
             port=settings.DATABASES["default"]["PORT"]
         )
