@@ -48,7 +48,7 @@ resource "aws_rds_cluster_instance" "cluster_instance" {
   engine             = aws_rds_cluster.cluster.engine
   engine_version     = aws_rds_cluster.cluster.engine_version
   
-  publicly_accessible = false
+  publicly_accessible = true
   db_subnet_group_name    = module.vpc.database_subnet_group_name
 
 }
