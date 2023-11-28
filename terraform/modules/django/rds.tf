@@ -12,38 +12,40 @@ resource "random_password" "password" {
   special = false
 }
 
-module "rds-aurora" {
-  source  = "terraform-aws-modules/rds-aurora/aws"
-  version = "8.5.0"
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster
+resource "aws_rds_cluster" "cluster" {
+    engine                  = "aurora-mysql"
+    engine_mode             = "provisioned"
+    engine_version          = "5.7"
+    cluster_identifier      = var.lambda_function_name
+    master_username         = "root"
+    master_password         = var.db_password
 
-  name            = module.vpc_label.id
-  engine          = local.engine
-  engine_version  = local.engine_version
-  master_username = "root"
-  master_password = var.db_password
+    db_subnet_group_name    = aws_db_subnet_group.db_subnet_group.name
 
-  instances = {
-    1 = {}
-  }
+    backup_retention_period = 7
+    skip_final_snapshot     = true
+}
 
-  vpc_id               = module.vpc.vpc_id
-  db_subnet_group_name = module.vpc.database_subnet_group_name
-  security_group_rules = {
-    vpc_ingress = {
-      cidr_blocks = module.vpc.private_subnets_cidr_blocks
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/rds_cluster_instance
+resource "aws_rds_cluster_instance" "cluster_instances" {
+    identifier         = "${var.lambda_function_name}-${count.index}"
+    count              = 1
+    cluster_identifier = aws_rds_cluster.cluster.id
+    instance_class     = "db.t3.small"
+    engine             = aws_rds_cluster.cluster.engine
+    engine_version     = aws_rds_cluster.cluster.engine_version
+
+    publicly_accessible = false
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/db_subnet_group
+resource "aws_db_subnet_group" "db_subnet_group" {
+    name = "${var.lambda_function_name}-db-subnet-group"
+
+    subnet_ids = module.vpc.private_subnets
+
+    tags = {
+        Name = var.lambda_function_name
     }
-  }
-
-  storage_encrypted   = true
-  apply_immediately   = true
-  skip_final_snapshot = true
-
-  monitoring_interval = 10
-
-  enabled_cloudwatch_logs_exports = ["general"]
-
-  tags = {
-    Environment = "dev"
-    Terraform   = "true"
-  }
 }

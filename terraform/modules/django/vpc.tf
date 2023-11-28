@@ -5,42 +5,40 @@ module "vpc_label" {
   name       = "vpc"
 }
 
-module "sg" {
-  source  = "terraform-aws-modules/security-group/aws"
-  version = "~> 5.0"
-
-  vpc_id = module.vpc.vpc_id
-  name   = module.vpc_label.id
-
-  egress_ipv6_cidr_blocks = []
-  egress_cidr_blocks = []
-
-  egress_prefix_list_ids = []
-
-  tags = module.vpc_label.tags
-}
-
-data "aws_security_group" "default" {
-  name   = "default"
-  vpc_id = module.vpc.vpc_id
-}
-
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
-  version = "5.1.2"
+    source = "terraform-aws-modules/vpc/aws"
+    version = "5.1.2"
 
-  name = module.vpc_label.id
+    name = module.vpc_label.id
+    cidr = "10.0.0.0/16"
+    azs  = ["us-east-1a", "us-east-1b"]
 
-  cidr = "20.10.0.0/16"
+    public_subnets = ["10.0.1.0/24", "10.0.2.0/24"]
+    private_subnets      = ["10.0.3.0/24", "10.0.4.0/24"]
+    enable_dns_hostnames = true
+    enable_dns_support   = true
 
-  azs                 = ["us-east-1a", "us-east-1b", "us-east-1c"]
-  private_subnets     = ["20.10.1.0/24", "20.10.2.0/24", "20.10.3.0/24"]
-  database_subnets    = ["20.10.21.0/24", "20.10.22.0/24", "20.10.23.0/24"]
+    tags = {
+        Name = module.vpc_label.id
+    }
+}
 
-  create_database_subnet_group = false
+resource "aws_default_security_group" "vpc_security_group" {
+    vpc_id = module.vpc.vpc_id
 
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+    # allow all inbound traffic 
+    ingress {
+        protocol  = -1
+        from_port = 0
+        to_port   = 0
+        self      = true
+    }
 
-  tags   = module.vpc_label.tags
+    # allow all outbound traffic
+    egress {
+        protocol    = -1
+        from_port   = 0
+        to_port     = 0
+        cidr_blocks = ["0.0.0.0/0"]
+    }
 }

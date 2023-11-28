@@ -108,9 +108,8 @@ resource "aws_lambda_function" "function" {
   layers = ["arn:aws:lambda:us-east-1:141122764470:layer:mysqlclient:1"]
 
   vpc_config {
-    subnet_ids = module.vpc.database_subnets
-    #security_group_ids = [data.aws_security_group.default.id, module.mysql_security_group.security_group_id]
-    security_group_ids = [data.aws_security_group.default.id]
+    subnet_ids = module.vpc.private_subnets
+    security_group_ids = [aws_default_security_group.vpc_security_group.id]
 
   }
 
@@ -119,7 +118,7 @@ resource "aws_lambda_function" "function" {
       {
         ALLOWED_HOSTS = "*"
         DEBUG = "False"
-        DATABASE_URL = "mysql://root:${var.db_password}@${module.rds-aurora.cluster_endpoint}:3306/${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
+        DATABASE_URL = "mysql://root:${var.db_password}@${aws_rds_cluster.cluster.endpoint}:3306/${var.lambda_function_name}_${keys(local.dist_manifest)[count.index]}"
         FORCE_SCRIPT_NAME = "/${keys(local.dist_manifest)[count.index]}/"
         DJANGO_SUPERUSER_PASSWORD=random_password.password.result
         ENABLE_MANIFEST_STORAGE = "False"
