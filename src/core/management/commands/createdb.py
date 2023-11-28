@@ -19,7 +19,9 @@ class Command(BaseCommand):
         try:
             with db.cursor() as cursor:
                 cursor.execute(f"CREATE DATABASE \"{options['db_name']}\"")
+            print('CreateDB success')
         except MySQLdb.DatabaseError:
+            print('Database already exists')
             if not options["exist_ok"]:
                 raise CommandError('Database "%s" already exists' % options["db_name"])
         else:
